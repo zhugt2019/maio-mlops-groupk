@@ -65,6 +65,8 @@ curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -
   "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02,
   "s5": 0.02, "s6": -0.001
 }'
+```
+
 
 # MLOps 作业完整执行清单
 
