@@ -1,11 +1,13 @@
 # src/schemas.py
 from pydantic import BaseModel, Field
 
+
 class PredictionRequest(BaseModel):
     """
     预测请求的输入特征
     (基于已缩放的 scikit-learn diabetes 数据集)
     """
+
     age: float
     sex: float
     bmi: float
@@ -33,8 +35,10 @@ class PredictionRequest(BaseModel):
             }
         }
 
+
 class PredictionResponse(BaseModel):
     prediction: float = Field(..., example=150.0)
+
 
 class HealthResponse(BaseModel):
     status: str = Field(..., example="ok")
