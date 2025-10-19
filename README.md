@@ -9,7 +9,7 @@ Assignment3 in MAIO
 
 | 版本 | 模型 | 测试集 RMSE |
 | :--- | :--- | :--- |
-| **v0.2** | `RandomForestRegressor` | 待测 |
+| **v0.2** | `RandomForestRegressor` | 59.8588 |
 | **v0.1** | `LinearRegression` | 56.3295 |
 
 详细信息请参阅 `CHANGELOG.md`。
