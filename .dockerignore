@@ -1,0 +1,16 @@
+**/.git
+**/.github
+**/.venv
+**/venv
+**/.pytest_cache
+**/__pycache__
+*.md
+.gitignore
+.dockerignore
+.flake8
+requirements-dev.txt
+docker-compose.yml
+
+# 排除测试和训练脚本
+tests/
+src/train.py

@@ -1,0 +1,40 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  diabetes-api-v0-1:
+    # 
+    # !! 重要 !!
+    # 请将 <ORG>/<REPO> 替换为你的 GitHub 用户名/仓库路径
+    # 例如: image: ghcr.io/my-username/my-diabetes-api:v0.1
+    #
+    image: ghcr.io/<ORG>/<REPO>:v0.1
+    ports:
+      - "8001:8000" # v0.1 映射到本地 8001 端口
+    environment:
+      - MODEL_VERSION=v0.1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  diabetes-api-v0-2:
+    # 
+    # !! 重要 !!
+    # 请将 <ORG>/<REPO> 替换为你的 GitHub 用户名/仓库路径
+    #
+    image: ghcr.io/<ORG>/<REPO>:v0.2
+    ports:
+      - "8002:8000" # v0.2 映射到本地 8002 端口
+    environment:
+      - MODEL_VERSION=v0.2
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
