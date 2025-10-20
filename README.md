@@ -194,6 +194,7 @@ curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -
     curl http://localhost:8002/health
     ```
     *(应返回 `{"status":"ok", "model_version": "v0.2"})*
+    测试返回：{"status":"ok","model_version":"v0.1"} 测试通过
 
 5.  **测试 v0.2 预测：**
     ```bash
@@ -201,8 +202,9 @@ curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -
     '{"age": 0.02, "sex": -0.044, "bmi": 0.06, "bp": -0.03, "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02, "s5": 0.02, "s6": -0.001}'
     ```
     *(应返回 `{"prediction": 140.5...}` 这样的浮点数)*
+    测试返回：{"prediction":234.38433726207228} 测试通过
 
-6.  **清理：** ```bash
+7.  **清理：** ```bash
     docker-compose down
     ```
-7.  **提交作业：** 将你的 GitHub 仓库 URL 放入 PDF 中并提交。
+8.  **提交作业：** 将你的 GitHub 仓库 URL 放入 PDF 中并提交。
