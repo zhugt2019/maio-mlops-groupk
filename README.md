@@ -1,14 +1,5 @@
 # Maio-MLOps-GroupK
 
-# To-do List （记得最后删掉！！！）
-* 中文注释改英文？
-* 整理README.md（见作业要求），全部改为英文
-* 完成CHANGELOG.md
-* 测试gitHub release的docker镜像是否能够pull，本地能否运行，以及其他老师会测试的部分（见作业要求）
-    * 补充v0.2 image shows a justified improvement (metrics + short rationale).）见CHANGELOG.md, 其他测试OK， 确认两个版本RMSE是否搞混？理论上RMSE最小模型效果越好
-    * 已经修正，是算法导致的问题，目前v0.2的RMSE更小了
-* 测试github actions页面是否显示老师要求的内容（（见作业要求）
-
 # How to Run
 
 ## **(Step 0:) Local Training (v0.1 and v0.2):**
