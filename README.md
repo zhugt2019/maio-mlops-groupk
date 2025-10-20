@@ -9,34 +9,64 @@
     * 已经修正，是算法导致的问题，目前v0.2的RMSE更小了
 * 测试github actions页面是否显示老师要求的内容（（见作业要求）
 
-
 # **How to Run**
 
-## **Step 1: Pull the Images**
+## **(Step 0:) Local Training (v0.1 and v0.2):**
 
+Create your environment first!
+
+    ```bash
+pip install \-r requirements-dev.txt
+python src/train.py --version v0.1
+python src/train.py --version v0.2
+    ```
+
+Run Linter if Github Actions says the format is incorrect.
+
+    ```bash
+flake8 .
+    ```
+
+## **Step 1: Pull the Images**
+    ```bash
 docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.1  
 docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
+    ```
+
 
 ## **Step 2: Run the Containers**
 
-\# Run the v0.1 service on local port 8001  
+    ```bash
 docker run \-d \-p 8001:8000 \-e MODEL\_VERSION="v0.1" \--name MAIO-GroupK-v0.1 ghcr.io/zhugt2019/maio-mlops-groupk:v0.1
-
-\# Run the v0.2 service on local port 8002  
 docker run \-d \-p 8002:8000 \-e MODEL\_VERSION="v0.2" \--name MAIO-GroupK-v0.2 ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
+    ```
 
 ## **Step 3: Verify**
-
-\# Check the health of the v0.1 service  
+    ```bash
 curl http://localhost:8001/health  
-
-\# Check the health of the v0.2 service  
-curl http://localhost:8002/health  
+curl http://localhost:8002/health
+curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -d "{\"age\": 0.02, \"sex\": -0.044, \"bmi\": 0.06, \"bp\": -0.03, \"s1\": -0.02, \"s2\": 0.03, \"s3\": -0.02, \"s4\": 0.02, \"s5\": 0.02, \"s6\": -0.001}"
+    ```
 
 ## **Step 4: Stop and Clean Up**
 
+    ```bash
 docker stop MAIO-GroupK-v0.1 MAIO-GroupK-v0.2  
 docker rm MAIO-GroupK-v0.1 MAIO-GroupK-v0.2
+    ```
+
+# **Grading related**
+
+* **Runs on PR/push, fails on lint/tests:** The .github/workflows/ci.yml workflow runs on every push and pull request. Its Lint job (flake8 .) will fail the build if code style is incorrect.  
+* **Tag workflow builds image, runs container smoke tests, publishes GitHub Release & GHCR:** yes.
+* **Seeds set:** src/train.py uses a fixed SEED \= 2025.
+* **Env pinned:** requirements.txt pins all dependency versions to guarantee a consistent environment.  
+* **Metrics logged & saved:** See CHANGELOG.md, or Changelog below.
+* **Clear instructions to reproduce locally:** see above.
+* **Self-contained:** The COPY ./models /app/models/ command ensures the pre-trained .joblib files are included directly in the image. 
+* **Reasonable size:** It uses the python:3.11-slim base image for a small footprint.
+* **Correct port exposed:** The EXPOSE 8000 instruction is included.
+* **Starts quickly:** yes.
 
 
 # Changelog
