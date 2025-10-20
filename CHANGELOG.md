@@ -15,6 +15,10 @@
 | **v0.1** | `LinearRegression` | **53.8869** |
 
 * **改进:** RMSE 降低了 5.0182 (约 9.3%)。
+* **Rationale:**  
+The Random Forest model in **v0.2** captures nonlinear relationships between features and target values that the linear model in **v0.1** could not represent.  
+By combining multiple decision trees and averaging their outputs, it reduces variance and improves generalization.  
+As a result, v0.2 achieves a lower RMSE (53.8869 vs 48.8687), confirming a tangible improvement in prediction accuracy and model robustness.
 
 ---
 
