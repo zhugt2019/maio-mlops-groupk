@@ -1,26 +1,63 @@
-# maio-mlops-groupk
-Assignment3 in MAIO
+# Maio-MLOps-GroupK
 
 # To-do List
 * 中文注释改英文？
 * 整理README.md（见作业要求），全部改为英文
 * 完成CHANGELOG.md
-* 测试gitHub release的docker镜像是否能够pull，本地能否运行，以及其他老师会测试的部分（见作业要求） （补充v0.2 image shows a justified improvement (metrics + short rationale).）见CHANGELOG.md, 其他测试OK， 确认两个版本RMSE是否搞混？理论上RMSE最小模型效果越好
+* 测试gitHub release的docker镜像是否能够pull，本地能否运行，以及其他老师会测试的部分（见作业要求）
+    * 补充v0.2 image shows a justified improvement (metrics + short rationale).）见CHANGELOG.md, 其他测试OK， 确认两个版本RMSE是否搞混？理论上RMSE最小模型效果越好
+    * 已经修正，是算法导致的问题，目前v0.2的RMSE更小了
 * 测试github actions页面是否显示老师要求的内容（（见作业要求）
+
+# Changelog
+
+## [v0.2] - 2025-10-20
+
+### What Changed
+* **Model:** We changed the model from `LinearRegression` (v0.1) to `Ridge` (v0.2).
+
+### Reason for Change
+For version 0.2, we first tried more complex models like `RandomForest` and `GradientBoosting` to get a much lower error score.
+
+However, our tests (shown in the table below) proved that these advanced models had a big **overfitting** problem. This means they were great at predicting the data they were trained on, but failed badly with new data.
+
+So, we switched to the `Ridge` model. It gave us a slightly better score than our v0.1 baseline and was still good at predicting new data.
+
+### Performance Scores
+
+**Final Model Comparison:**
+
+| Version | Model | Test RMSE (Error Score) |
+| :--- | :--- | :--- |
+| **v0.2** | `Ridge (alpha=1.0)` | **56.3131** |
+| **v0.1** | `LinearRegression` | **56.3295** |
+
+* **Improvement:** The error score was lowered by 0.0164. This is a small but clear improvement.
+
+**Full Log of v0.2 Experiments:**
+
+| Model We Tested | Train RMSE | Test RMSE | Conclusion |
+| :--- | :--- | :--- | :--- |
+| `Linear (v0.1)` | 52.8428 | **56.3295** | **Our starting point (baseline)** |
+| `RandomForest` | 21.1479 | 59.8588 | Failed: Big Overfitting Problem |
+| `RF (max_depth=10)` | 22.4564 | 60.1090 | Failed: Still Overfitting |
+| `GridSearchCV(RF)` | 34.0756 | 60.2260 | Failed: Big Overfitting Problem |
+| `GradientBoosting` | 22.9452 | 62.8603 | Failed: Big Overfitting Problem |
+| **`Ridge (alpha=1.0)`** | 52.9258 | **56.3131** | **Success: This is our v0.2 Model** |
+
+---
+
+## [v0.1] - 2025-10-19
+
+### What Changed
+* **First Version:**
+* **Model:** A simple `LinearRegression` model.
+* **Score:** The starting error score (Test RMSE) was **56.3295**.
+
 
 # 虚拟糖尿病诊所 - 分诊 ML 服务
 
 该服务为糖尿病进展提供风险评分，以帮助虚拟诊所优先安排患者随访。
-
-
-## 模型版本与性能
-
-| 版本 | 模型 | 测试集 RMSE |
-| :--- | :--- | :--- |
-| **v0.2** | `RandomForestRegressor` | 59.8588 |
-| **v0.1** | `LinearRegression` | 56.3295 |
-
-详细信息请参阅 `CHANGELOG.md`。
 
 ## 运行服务 (Docker Compose)
 
