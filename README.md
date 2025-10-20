@@ -14,18 +14,13 @@
 ## **(Step 0:) Local Training (v0.1 and v0.2):**
 
 
-Remember to create your environment first!
+1. Remember to create your environment first!
+2. Ridge model was used by default in train.py.
 
 ```bash
 pip install \-r requirements-dev.txt
 python src/train.py --version v0.1
 python src/train.py --version v0.2
-```
-
-Run Linter if Github Actions says the format is incorrect.
-
-```bash
-flake8 .
 ```
 
 ## **Step 1: Pull the Images**
@@ -59,7 +54,7 @@ docker rm MAIO-GroupK-v0.1 MAIO-GroupK-v0.2
 # Grading Related Checklist
 
 * **Runs on PR/push, fails on lint/tests:** The .github/workflows/ci.yml workflow runs on every push and pull request. Its Lint job (flake8 .) will fail the build if code style is incorrect.  
-=* **Seeds set:** src/train.py uses a fixed SEED \= 2025.
+* **Seeds set:** src/train.py uses a fixed SEED \= 2025.
 * **Env pinned:** requirements.txt pins all dependency versions to guarantee a consistent environment.  
 * **Metrics logged & saved:** See CHANGELOG.md, or Changelog below.
 * **Clear instructions to reproduce locally:** see above.
