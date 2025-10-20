@@ -9,6 +9,36 @@
     * 已经修正，是算法导致的问题，目前v0.2的RMSE更小了
 * 测试github actions页面是否显示老师要求的内容（（见作业要求）
 
+
+# **How to Run**
+
+## **Step 1: Pull the Images**
+
+docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.1  
+docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
+
+## **Step 2: Run the Containers**
+
+\# Run the v0.1 service on local port 8001  
+docker run \-d \-p 8001:8000 \-e MODEL\_VERSION="v0.1" \--name MAIO-GroupK-v0.1 ghcr.io/zhugt2019/maio-mlops-groupk:v0.1
+
+\# Run the v0.2 service on local port 8002  
+docker run \-d \-p 8002:8000 \-e MODEL\_VERSION="v0.2" \--name MAIO-GroupK-v0.2 ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
+
+## **Step 3: Verify**
+
+\# Check the health of the v0.1 service  
+curl http://localhost:8001/health  
+
+\# Check the health of the v0.2 service  
+curl http://localhost:8002/health  
+
+## **Step 4: Stop and Clean Up**
+
+docker stop MAIO-GroupK-v0.1 MAIO-GroupK-v0.2  
+docker rm MAIO-GroupK-v0.1 MAIO-GroupK-v0.2
+
+
 # Changelog
 
 ## [v0.2] - 2025-10-20
