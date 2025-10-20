@@ -15,7 +15,7 @@
 
 
 1. Remember to create your environment first!
-2. Ridge model was used by default in train.py.
+2. Ridge model was used in v0.2 by default in train.py.
 
 ```bash
 pip install \-r requirements-dev.txt
