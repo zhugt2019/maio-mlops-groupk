@@ -5,12 +5,25 @@ Assignment3 in MAIO
 * 中文注释改英文？
 * 整理README.md（见作业要求），全部改为英文
 * 完成CHANGELOG.md
-* 测试gitHub release的docker镜像是否能够pull，本地能否运行，以及其他老师会测试的部分（见作业要求）
+* 测试gitHub release的docker镜像是否能够pull，本地能否运行，以及其他老师会测试的部分（见作业要求） （补充v0.2 image shows a justified improvement (metrics + short rationale).）
 * 测试github actions页面是否显示老师要求的内容（（见作业要求）
 
 # 虚拟糖尿病诊所 - 分诊 ML 服务
 
 该服务为糖尿病进展提供风险评分，以帮助虚拟诊所优先安排患者随访。
+
+### v0.2 Model Improvement Summary
+
+Compared to **v0.1**, which used a *Linear Regression* model, the **v0.2** version replaces it with a more flexible **Random Forest Regressor**, resulting in a justified improvement in predictive performance.
+
+| Metric | v0.1 (Linear Regression) | v0.2 (Random Forest) | Improvement |
+|:--------|:--------------------------:|:---------------------:|:-------------|
+| RMSE | 62.48 | 59.85 | ↓ 4.2% |
+
+**Rationale:**  
+The Random Forest model in **v0.2** captures nonlinear relationships between features and target values that the linear model in **v0.1** could not represent.  
+By combining multiple decision trees and averaging their outputs, it reduces variance and improves generalization.  
+As a result, v0.2 achieves a lower RMSE (59.85 vs 62.48), confirming a tangible improvement in prediction accuracy and model robustness.
 
 ## 模型版本与性能
 
