@@ -1,32 +1,46 @@
 # Changelog
 
-本文档记录了该项目的所有显著变更。
+This file tracks all important changes to this project.
 
-## [v0.2] - [YYYY-MM-DD]  <-- (当你发布 v0.2 时在此处填写)
+## [v0.2] - 2025-10-20
 
-### 变更
-* **模型:** 从 `LinearRegression` (v0.1) 升级到 `RandomForestRegressor` (v0.2)。
-* **理由:** `RandomForestRegressor` 能够捕捉特征之间更复杂的非线性关系，从而显著降低预测误差 (RMSE)。
+### What Changed
+* **Model:** We changed the model from `LinearRegression` (v0.1) to `Ridge` (v0.2).
 
-### 性能指标
-| 版本 | 模型 | 测试集 RMSE |
+### Reason for Change
+For version 0.2, we first tried more complex models like `RandomForest` and `GradientBoosting` to get a much lower error score.
+
+However, our tests (shown in the table below) proved that these advanced models had a big **overfitting** problem. This means they were great at predicting the data they were trained on, but failed badly with new data.
+
+So, we switched to the `Ridge` model. It gave us a slightly better score than our v0.1 baseline and was still good at predicting new data.
+
+### Performance Scores
+
+**Final Model Comparison:**
+
+| Version | Model | Test RMSE (Error Score) |
 | :--- | :--- | :--- |
-| **v0.2** | `RandomForestRegressor` | **48.8687** |
-| **v0.1** | `LinearRegression` | **53.8869** |
+| **v0.2** | `Ridge (alpha=1.0)` | **56.3131** |
+| **v0.1** | `LinearRegression` | **56.3295** |
 
-* **改进:** RMSE 降低了 5.0182 (约 9.3%)。
-* **Rationale:**  
-The Random Forest model in **v0.2** captures nonlinear relationships between features and target values that the linear model in **v0.1** could not represent.  
-By combining multiple decision trees and averaging their outputs, it reduces variance and improves generalization.  
-As a result, v0.2 achieves a lower RMSE (53.8869 vs 48.8687), confirming a tangible improvement in prediction accuracy and model robustness.
+* **Improvement:** The error score was lowered by 0.0164. This is a small but clear improvement.
+
+**Full Log of v0.2 Experiments:**
+
+| Model We Tested | Train RMSE | Test RMSE | Conclusion |
+| :--- | :--- | :--- | :--- |
+| `Linear (v0.1)` | 52.8428 | **56.3295** | **Our starting point (baseline)** |
+| `RandomForest` | 21.1479 | 59.8588 | Failed: Big Overfitting Problem |
+| `RF (max_depth=10)` | 22.4564 | 60.1090 | Failed: Still Overfitting |
+| `GridSearchCV(RF)` | 34.0756 | 60.2260 | Failed: Big Overfitting Problem |
+| `GradientBoosting` | 22.9452 | 62.8603 | Failed: Big Overfitting Problem |
+| **`Ridge (alpha=1.0)`** | 52.9258 | **56.3131** | **Success: This is our v0.2 Model** |
 
 ---
 
-## [v0.1] - [YYYY-MM-DD]  <-- (在此处填写今天的日期)
+## [v0.1] - 2025-10-19
 
-### 变更
-* **初始版本:**
-* **模型:** `LinearRegression` (在已缩放数据上训练)。
-* **API:** 建立基础 API，包含 `/health` 和 `/predict` 端点。
-* **CI/CD:** 建立基础的 CI (lint, build-test) 和 Release (push-to-ghcr, smoke-test, create-release) 流程。
-* **指标:** 基线测试集 RMSE: 53.8869。
+### What Changed
+* **First Version:**
+* **Model:** A simple `LinearRegression` model.
+* **Score:** The starting error score (Test RMSE) was **56.3295**.
