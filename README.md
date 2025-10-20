@@ -12,18 +12,6 @@ Assignment3 in MAIO
 
 该服务为糖尿病进展提供风险评分，以帮助虚拟诊所优先安排患者随访。
 
-### v0.2 Model Improvement Summary
-
-Compared to **v0.1**, which used a *Linear Regression* model, the **v0.2** version replaces it with a more flexible **Random Forest Regressor**, resulting in a justified improvement in predictive performance.
-
-| Metric | v0.1 (Linear Regression) | v0.2 (Random Forest) | Improvement |
-|:--------|:--------------------------:|:---------------------:|:-------------|
-| RMSE | 62.48 | 59.85 | ↓ 4.2% |
-
-**Rationale:**  
-The Random Forest model in **v0.2** captures nonlinear relationships between features and target values that the linear model in **v0.1** could not represent.  
-By combining multiple decision trees and averaging their outputs, it reduces variance and improves generalization.  
-As a result, v0.2 achieves a lower RMSE (59.85 vs 62.48), confirming a tangible improvement in prediction accuracy and model robustness.
 
 ## 模型版本与性能
 
