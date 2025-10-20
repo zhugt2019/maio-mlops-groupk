@@ -1,6 +1,6 @@
 # Maio-MLOps-GroupK
 
-# To-do List
+# To-do List （记得最后删掉！！！）
 * 中文注释改英文？
 * 整理README.md（见作业要求），全部改为英文
 * 完成CHANGELOG.md
@@ -13,47 +13,48 @@
 
 ## **(Step 0:) Local Training (v0.1 and v0.2):**
 
-Create your environment first!
 
-    ```bash
-    pip install \-r requirements-dev.txt
-    python src/train.py --version v0.1
-    python src/train.py --version v0.2
-    ```
+Remember to create your environment first!
+
+```bash
+pip install \-r requirements-dev.txt
+python src/train.py --version v0.1
+python src/train.py --version v0.2
+```
 
 Run Linter if Github Actions says the format is incorrect.
 
-    ```bash
-    flake8 .
-    ```
+```bash
+flake8 .
+```
 
 ## **Step 1: Pull the Images**
-    ```bash
-    docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.1  
-    docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
-    ```
+```bash
+docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.1  
+docker pull ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
+```
 
 
 ## **Step 2: Run the Containers**
 
-    ```bash
-    docker run \-d \-p 8001:8000 \-e MODEL\_VERSION="v0.1" \--name MAIO-GroupK-v0.1 ghcr.io/zhugt2019/maio-mlops-groupk:v0.1
-    docker run \-d \-p 8002:8000 \-e MODEL\_VERSION="v0.2" \--name MAIO-GroupK-v0.2 ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
-    ```
+```bash
+docker run \-d \-p 8001:8000 \-e MODEL\_VERSION="v0.1" \--name MAIO-GroupK-v0.1 ghcr.io/zhugt2019/maio-mlops-groupk:v0.1
+docker run \-d \-p 8002:8000 \-e MODEL\_VERSION="v0.2" \--name MAIO-GroupK-v0.2 ghcr.io/zhugt2019/maio-mlops-groupk:v0.2
+```
 
 ## **Step 3: Verify**
-    ```bash
-    curl http://localhost:8001/health  
-    curl http://localhost:8002/health
-    curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -d "{\"age\": 0.02, \"sex\": -0.044, \"bmi\": 0.06, \"bp\": -0.03, \"s1\": -0.02, \"s2\": 0.03, \"s3\": -0.02, \"s4\": 0.02, \"s5\": 0.02, \"s6\": -0.001}"
-    ```
+```bash
+curl http://localhost:8001/health  
+curl http://localhost:8002/health
+curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -d "{\"age\": 0.02, \"sex\": -0.044, \"bmi\": 0.06, \"bp\": -0.03, \"s1\": -0.02, \"s2\": 0.03, \"s3\": -0.02, \"s4\": 0.02, \"s5\": 0.02, \"s6\": -0.001}"
+```
 
 ## **Step 4: Stop and Clean Up**
 
-    ```bash
-    docker stop MAIO-GroupK-v0.1 MAIO-GroupK-v0.2  
-    docker rm MAIO-GroupK-v0.1 MAIO-GroupK-v0.2
-    ```
+```bash
+docker stop MAIO-GroupK-v0.1 MAIO-GroupK-v0.2  
+docker rm MAIO-GroupK-v0.1 MAIO-GroupK-v0.2
+```
 
 # Grading Related Checklist
 
