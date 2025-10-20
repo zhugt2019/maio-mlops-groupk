@@ -188,6 +188,7 @@ curl -X POST http://localhost:8002/predict -H "Content-Type: application/json" -
     curl http://localhost:8001/health
     ```
     *(应返回 `{"status":"ok", "model_version": "v0.1"})*
+    测试返回：{"status":"ok","model_version":"v0.1"}  测试通过
 
 4.  **测试 v0.2：** ```bash
     curl http://localhost:8002/health
